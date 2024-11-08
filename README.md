@@ -7,3 +7,7 @@ Note: This is **not** the [Meshtastic firmware](https://github.com/meshtastic/fi
 When using the Arduino IDE, install the Nanopb dependency as explained [here](https://www.dfrobot.com/blog-1161.html) under "Setting up the environment".
 
 Author: Mike Schiraldi
+
+--
+
+This fork is meant to provide support for using an ESP32 rather than an Arduino based platform.
