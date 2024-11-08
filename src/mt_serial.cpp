@@ -1,17 +1,15 @@
 #include "mt_internals.h"
 
-#ifdef MT_SOFTWARESERIAL_SUPPORTED
-  #include <SoftwareSerial.h>
-  SoftwareSerial *serial;
-#else
-  #define serial (&Serial1)
+#ifdef ARDUINO_ARCH_ESP32
+  #define serial (&Serial2)
 #endif
 
 void mt_serial_init(int8_t rx_pin, int8_t tx_pin, uint32_t baud) {
-#ifndef ARDUINO_ARCH_SAMD
-  serial = new SoftwareSerial(rx_pin, tx_pin);
-  serial->begin(baud);
+#ifdef ARDUINO_ARCH_ESP32
+  //UART2 used (16-RX/17-TX)
+  Serial2.begin(baud, SERIAL_8N1, rx_pin, tx_pin);
 #endif
+
   mt_wifi_mode = false;
   mt_serial_mode = true;
 }
